@@ -4,8 +4,8 @@ import os
 import imageio
 import shutil
 
-directory = "frames/"
-output_directory = "video/"
+directory = ""
+output_directory = ""
 width = 1920
 height = 1080
 pixel_size = 4
@@ -82,10 +82,10 @@ def get_nth_set(n, file_name):
 
 def generate_video():
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video = cv2.VideoWriter("videos/output.mp4", fourcc, 30, (width, height))
+    video = cv2.VideoWriter("output.mp4", fourcc, 30, (width, height))
 
     if not video.isOpened():
-        print(f"Failed to create video file: videos/output.mp4")
+        print(f"Failed to create video file: output.mp4")
         return
 
     for i in range(num_png):
@@ -99,7 +99,7 @@ def generate_video():
             video.write(frame)
 
     video.release()
-    print(f"Video created successfully: videos/output.mp4")
+    print(f"Video created successfully: output.mp4")
 
 
 def encode(file_to_encode):
@@ -126,13 +126,13 @@ def decode(file_to_decode):
     global num_png
     bytes_ = []
     shutil.rmtree(output_directory, ignore_errors=True)
-    generate_png_sequence("videos/output.mp4")
-    os.remove("testfiles/outfile" + outfile_ext)
+    generate_png_sequence(file_to_decode)
+    os.remove("outfile" + outfile_ext)
 
     for i in range(num_png):
         pic_name = os.path.join(output_directory, f"{i}.png")
         bytes_ = png_to_data(pic_name)
-        append_bytes_to_file(bytes_, "testfiles/outfile" + outfile_ext)
+        append_bytes_to_file(bytes_, "outfile" + outfile_ext)
 
 
 def generate_png_sequence(video_path):
