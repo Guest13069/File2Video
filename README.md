@@ -4,3 +4,4 @@ The code was translated from C++ to Python
 
 ## This is a example of SpotifySetup.exe to a mp4
 ![Example](https://cdn.glitch.global/58b080cd-c82b-4729-ba0e-9c7a9e935c9b/output.gif?v=1703208927467 "Example")
+Note this took around 1-2 mins to convert to a mp4, bigger files will take longer to convert.
